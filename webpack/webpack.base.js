@@ -6,7 +6,7 @@ const isProduction = !!((argv.env && argv.env.production) || argv.p);
 
 module.exports = {
   entry: {
-    app: [path.resolve(__dirname, '../src/main.js')]
+    app: [path.resolve(__dirname, '../src/main.ts')]
   },
   output: {
     chunkFilename: '[id].chunk.js',
@@ -14,16 +14,15 @@ module.exports = {
     path: path.resolve(__dirname, '../build'),
     publicPath: '/',
     sourceMapFilename: '[name].[hash].js.map',
-    // pathinfo: true
   },
   resolve: {
     alias: {
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
       'src': path.resolve(__dirname, '../src'),
-      'vue$': 'vue/dist/vue.js'
+      'vue$': 'vue/dist/vue.esm.js'
     },
-    extensions: ['*', '.js', '.vue', 'html'],
+    extensions: ['.ts', '.tsx', '.js', 'html'],
   },
   devServer: {
     historyApiFallback: true,
@@ -38,6 +37,24 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'eslint-loader',
         test: /\.js?$/
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              cacheDirectory: true
+            }
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/]
+            }
+          }
+        ]
       },
       {
         exclude: [/(node_modules)(?![/|\\](bootstrap|foundation-sites))/],
@@ -56,8 +73,10 @@ module.exports = {
       },
       {
         exclude: /node_modules/,
-        loader: 'html-loader',
-        test: /\.html$/
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader?exportAsEs6Default',
+        }
       },
       {
         test: /\.css$/,
