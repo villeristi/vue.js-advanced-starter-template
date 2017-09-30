@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import VeeValidate, { ErrorBag, FieldBag } from 'vee-validate';
-import classnames from 'classnames';
 import { Post, Message } from './types';
 
 Vue.use(VeeValidate);
