@@ -35,8 +35,11 @@ module.exports = {
       {
         enforce: 'pre',
         exclude: /node_modules/,
-        loader: 'eslint-loader',
-        test: /\.js?$/
+        loader: 'tslint-loader',
+        test: /\.tsx?$/,
+        options: {
+          formatter: 'stylish',
+        }
       },
       {
         test: /\.tsx?$/,

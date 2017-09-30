@@ -5,34 +5,32 @@ import CreatePost from './components/Posts/createPost';
 import EditPost from './components/Posts/editPost';
 import NotFound from './components/NotFound/notFound';
 
-const routes = [
+export default [
   {
     path: '/',
-    component: Home
+    component: Home,
   },
   {
     path: '/posts',
-    component: Posts
+    component: Posts,
   },
   {
     path: '/posts/create',
     name: 'createPost',
-    component: CreatePost
+    component: CreatePost,
   },
   {
     path: '/post/:id',
     name: 'post',
-    component: Post
+    component: Post,
   },
   {
     path: '/post/:id/edit',
     name: 'editPost',
-    component: EditPost
+    component: EditPost,
   },
   {
     path: '*',
-    component: NotFound
-  }
+    component: NotFound,
+  },
 ];
-
-export default routes;

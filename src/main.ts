@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Navigation from './components/Navigation/navigation';
 import Loader from './components/Loader/loader';
+import Navigation from './components/Navigation/navigation';
 
 Vue.use(VueRouter);
 
@@ -13,14 +13,14 @@ import './style.scss';
 export const router = new VueRouter({
   routes,
   mode: 'history',
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
 });
 
 const app: Vue = new Vue({
   router,
   components: {
     Navigation,
-    Loader
+    Loader,
   },
 });
 

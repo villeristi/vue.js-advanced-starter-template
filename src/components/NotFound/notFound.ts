@@ -9,4 +9,4 @@ export default class NotFound extends Vue {
         <p>Sorry <i class="fa fa-frown-o"></i></p>
     </div>
   `;
-};
+}
