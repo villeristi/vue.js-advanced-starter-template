@@ -1,14 +1,20 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { postsResource } from '../../util/resources';
+import { Action, Getter, namespace } from 'vuex-class';
 import { Post } from './types';
+
+const PostsGetter = namespace('posts', Getter);
+const PostsAction = namespace('posts', Action);
 
 @Component
 export default class Posts extends Vue {
 
+  @PostsGetter('all') posts;
+  @PostsAction('fetchAllPosts') fetchPosts;
+
   animation: string = 'flipInX';
   animationDelay: number = 25; // in ms
-  posts: Post[] = [];
   postsFilter: string = '';
 
   /**
@@ -19,18 +25,12 @@ export default class Posts extends Vue {
   }
 
   /**
-   * Lifecycle-hooks
+   * Lifecycle hooks
    */
   mounted() {
-    this.fetchPosts();
-  }
-
-  /**
-   * Custom methods
-   */
-  async fetchPosts() {
-    const { data } = await postsResource.get('/');
-    this.posts = data;
+    if (!this.posts.length) {
+      this.fetchPosts();
+    }
   }
 
   /**
@@ -50,7 +50,6 @@ export default class Posts extends Vue {
   }
 
   render() {
-
     return (
       <div>
         <h1 class="mb-4"><i class="fa fa-file-text-o"></i> Posts</h1>

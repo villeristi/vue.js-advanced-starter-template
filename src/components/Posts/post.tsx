@@ -1,28 +1,45 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { postsResource } from '../../util/resources';
+import { Action, Getter, Mutation, namespace } from 'vuex-class';
 import { Post } from './types';
+
+const PostsGetter = namespace('posts', Getter);
+const PostsAction = namespace('posts', Action);
+const PostsMutation = namespace('posts', Mutation);
 
 @Component
 export default class Posts extends Vue {
-  post: Post = null;
 
+  @PostsGetter('current') post;
+  @PostsAction('fetchSinglePost') fetchPost;
+  @PostsMutation('setPost') setPost;
+
+  /**
+   * Lifecycle hooks
+   */
   created() {
-    this.fetchPost();
+    const { id } = this.$route.params;
+    if (!this.post || (this.post.id !== id)) {
+      this.fetchPost(id);
+    }
   }
 
-  async fetchPost() {
-    const { id } = this.$route.params;
-    const { data } = await postsResource.get(`${id}`);
-    this.post = data;
+  /**
+   * Router hooks
+   * @param to
+   * @param from
+   * @param next
+   */
+  beforeRouteLeave(to, from, next) {
+    this.setPost(null);
+    return next();
   }
 
   render() {
-
     if (!this.post) {
       return;
     }
-
     return (
       <transition
         name="post-appear-animation"
