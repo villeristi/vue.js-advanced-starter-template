@@ -85,7 +85,7 @@ export default class EditPost extends Vue {
             <hr />
           </header>
 
-          <form name="editPostForm" class="card card-block" onSubmit={handleSubmit}>
+          <form name="editPostForm" class="card card-block mb-4" onSubmit={handleSubmit}>
 
             {message &&
               <transition
@@ -161,7 +161,6 @@ export default class EditPost extends Vue {
 
           </form>
 
-          <hr />
           <router-link to="/posts">
             <i class="fa fa-chevron-left"></i> Back to posts
         </router-link>

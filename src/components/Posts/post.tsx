@@ -28,11 +28,10 @@ export default class Posts extends Vue {
         name="post-appear-animation"
         enter-active-class="animated flipInX">
         <div>
-          <div class="card card-block">
+          <div class="card card-block mb-4">
             <h1 class="card-title">{this.post.title}</h1>
             <p class="card-text">{this.post.body}</p>
           </div>
-          <hr />
           <router-link to="/posts">
             <i class="fa fa-chevron-left"></i> Back to posts
           </router-link>

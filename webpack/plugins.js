@@ -74,18 +74,18 @@ const developPlugins = [
     title: pkg.name,
     contentImage: path.join(__dirname, '../src/assets/images/logo.png')
   }),
-  new BrowserSyncPlugin(
-    {
-      host: 'localhost',
-      port: pkg.config.port,
-      // Proxy the default webpack dev-server port
-      proxy: 'http://localhost:8080/',
-      notify: false,
-      open: false,
-      // Let webpack handle the reload
-      codeSync: false
-    }
-  ),
+  // new BrowserSyncPlugin(
+  //   {
+  //     host: 'localhost',
+  //     port: pkg.config.port,
+  //     // Proxy the default webpack dev-server port
+  //     proxy: 'http://localhost:8080/',
+  //     notify: false,
+  //     open: false,
+  //     // Let webpack handle the reload
+  //     codeSync: false
+  //   }
+  // ),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.NoEmitOnErrorsPlugin()
 ];

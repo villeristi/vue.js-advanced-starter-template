@@ -1,14 +1,17 @@
+import './hooks';
+import './config/http';
+import './style.scss';
+
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Loader from './components/Loader/loader';
-import Navigation from './components/Navigation/navigation';
-
 Vue.use(VueRouter);
 
-import './config/http';
+// we don't want any nagging about using Vue in development environment...
+Vue.config.productionTip = false;
+
+import App from './app';
 import routes from './routes';
-import './style.scss';
 
 export const router = new VueRouter({
   routes,
@@ -16,12 +19,10 @@ export const router = new VueRouter({
   linkActiveClass: 'active',
 });
 
-const app: Vue = new Vue({
+// tslint:disable-next-line
+new Vue({
+  el: '#app',
   router,
-  components: {
-    Navigation,
-    Loader,
-  },
+  template: '<App />',
+  components: { App },
 });
-
-app.$mount('#app');

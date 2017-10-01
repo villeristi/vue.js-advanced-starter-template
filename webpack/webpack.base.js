@@ -2,11 +2,12 @@ const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const pkg = require('../package.json');
 const isProduction = !!((argv.env && argv.env.production) || argv.p);
 
 module.exports = {
   entry: {
-    app: [path.resolve(__dirname, '../src/main.ts')]
+    app: [path.resolve(__dirname, '../src/main.ts')],
   },
   output: {
     chunkFilename: '[id].chunk.js',
@@ -20,15 +21,31 @@ module.exports = {
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
       'src': path.resolve(__dirname, '../src'),
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
     },
     extensions: ['.ts', '.tsx', '.js', 'html'],
   },
   devServer: {
-    historyApiFallback: true,
-    inline: true,
+    compress: true,
     contentBase: path.resolve(__dirname, '../src'),
-    compress: true
+    historyApiFallback: true,
+    // TODO: Fix me, plz!
+    // hotOnly: true,
+    host: '0.0.0.0',
+    inline: true,
+    overlay: {
+      errors: true,
+      warnings: true,
+    },
+    stats: {
+      colors: true,
+      chunks: false,
+    },
+    port: pkg.config.port,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000,
+    },
   },
   module: {
     rules: [
@@ -46,15 +63,10 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
-            query: {
-              cacheDirectory: true
-            }
-          },
-          {
-            loader: 'ts-loader',
+            loader: 'awesome-typescript-loader',
             options: {
-              appendTsSuffixTo: [/\.vue$/]
+              useBabel: true,
+              useCache: true
             }
           }
         ]
@@ -62,24 +74,26 @@ module.exports = {
       {
         exclude: [/(node_modules)(?![/|\\](bootstrap|foundation-sites))/],
         test: /\.js$/,
-        use: [{
-          loader: 'babel-loader',
-          query: {
-            cacheDirectory: true
-          }
-        }]
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              cacheDirectory: true
+            }
+          },
+        ],
       },
       {
         exclude: /node_modules/,
         loader: 'vue-loader',
-        test: /\.vue$/
+        test: /\.vue$/,
       },
       {
         exclude: /node_modules/,
         test: /\.html$/,
         use: {
-          loader: 'html-loader?exportAsEs6Default',
-        }
+          loader: 'html-loader',
+        },
       },
       {
         test: /\.css$/,
@@ -92,8 +106,8 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                sourceMap: !isProduction
-              }
+                sourceMap: !isProduction,
+              },
             }],
         })),
       },
@@ -106,19 +120,19 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                sourceMap: !isProduction
+                sourceMap: !isProduction,
               }
             },
             {
               loader: 'resolve-url-loader',
               options: {
-                sourceMap: !isProduction
+                sourceMap: !isProduction,
               }
             },
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: !isProduction
+                sourceMap: !isProduction,
               }
             },
           ],
@@ -162,7 +176,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           query: {
-            name: 'assets/vendor/[name].[ext]'
+            name: 'assets/vendor/[name].[ext]',
           },
         },
       },

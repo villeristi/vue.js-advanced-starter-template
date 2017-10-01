@@ -49,15 +49,6 @@ export default class Posts extends Vue {
     }, delay);
   }
 
-  /**
-   * Update the filter
-   * @param value
-   */
-  applyFilter({ target: { value } }) {
-    this.postsFilter = value;
-    return this.posts.filter((post) => post.title.toLowerCase().indexOf(this.postsFilter.toLowerCase()) !== -1);
-  }
-
   render() {
 
     return (

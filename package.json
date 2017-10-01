@@ -1,5 +1,5 @@
 {
-  "name": "vue.js-starter-template",
+  "name": "vue.js-advanced-starter-template",
   "version": "0.10.0",
   "description": "A starter for Vue.js-projects",
   "keywords": [
@@ -13,14 +13,14 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:villeristi/vue.js-starter-template.git"
+    "url": "git@github.com:villeristi/vue.js-advanced-starter-template.git"
   },
   "config": {
     "port": 3000
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack/development.js --progress --hot",
-    "dashboard": "webpack-dashboard -c magenta -t 'Vue.js-Starter-Template' -- webpack-dev-server --config webpack/development.js --progress --hot",
+    "start": "webpack-dev-server --config webpack/development.js --progress --hot --color",
+    "dashboard": "webpack-dashboard -c magenta -t 'Vue.js-Advanced-Starter-Template' -- webpack-dev-server --config webpack/development.js --progress --hot",
     "build": "webpack --config webpack/production.js -p --progress",
     "lint:js": "eslint src"
   },
@@ -41,11 +41,11 @@
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-loader": "^7.0.0",
     "babel-plugin-jsx-v-model": "^2.0.3",
+    "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "babel-plugin-syntax-jsx": "^6.18.0",
     "browser-sync": "^2.18.12",
     "browser-sync-webpack-plugin": "^1.1.3",
     "copy-webpack-plugin": "^4.0.1",
@@ -63,12 +63,12 @@
     "minimist": "^1.2.0",
     "node-sass": "^4.5.3",
     "optimize-css-assets-webpack-plugin": "^1.3.2",
+    "react-hot-loader": "^1.3.1",
     "require-dir": "^0.3.2",
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
-    "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
     "tslint-loader": "^3.5.3",
     "url-loader": "^0.5.9",
