@@ -8,7 +8,7 @@
   "rules": {
     "arrow-parens": true,
     "indent": true,
-    "interface-name": true,
+    "interface-name": false,
     "member-access": false,
     "no-console": false,
     "no-shadowed-variable": false,
