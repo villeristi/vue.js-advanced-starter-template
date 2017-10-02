@@ -1,20 +1,20 @@
-# Vue.js starter template
+# Vue.js advanced starter template
 
 <p align="center">
   <img src="src/assets/images/logo.png" height="100" />
 </p>
 
-A bare-bones starter-template to get your hands dirty with awesome [Vue.js](https://github.com/vuejs/vue) library.
+An advanced & type safe starter-template with awesome things like [Vue.js](https://github.com/vuejs/vue), [Vuex](https://github.com/vuejs/vuex) and [Typescript](https://www.typescriptlang.org/)!
 
 Built with:
 * [Vue.js 2](https://github.com/vuejs/vue)
-* [Vue Router 2](https://github.com/vuejs/vue-router)
+* [Vuex](https://github.com/vuejs/vuex)
+* [Typescript](https://www.typescriptlang.org/)
 * [Axios](https://github.com/mzabriskie/axios)
 * [Animate.css](https://github.com/daneden/animate.css)
 * [Babel](https://babeljs.io/)
 * [Bootstrap 4](https://v4-alpha.getbootstrap.com/)
-* [BrowserSync](https://www.browsersync.io/)
-* [ESLint](http://eslint.org/)
+* [tsint](https://palantir.github.io/tslint/)
 * [Font Awesome](http://fontawesome.io/)
 * [JSONPlaceholder](http://jsonplaceholder.typicode.com/)
 * [SASS](http://sass-lang.com/)
@@ -27,26 +27,19 @@ Built with:
 1. Be sure you have [Yarn](https://yarnpkg.com/en/docs/install) installed globally.
 2. Clone the repo & run `yarn` from the project root
 
-## Single File Components
-See [instructions](docs/single-file-components.md) for example usage of [single file components](https://vuejs.org/v2/guide/single-file-components.html).
-
 ## Available commands
 
 ```sh
 yarn start
 ```
 
-Runs the Webpack module-bundler, starts watching for changes & launches the BrowserSync server to [http://localhost:3000](http://localhost:3000) (it's possible to change the port from `package.json` config-section). Uses [Webpack Dashboard](https://github.com/FormidableLabs/webpack-dashboard)
-
-**Note!** Webpack handles all the reloading stuff while BrowserSync just proxies the default webpack-port (`8080`) giving the possibility to connect to dev-server from multiple devices:
-![BrowserSync](.github/browsersync.png)
-
+Runs the Webpack module-bundler, starts watching for changes & launches the webpacks DevServer server to [http://localhost:3000](http://localhost:3000) (it's possible to change the port from `package.json` config-section).
 
 ```sh
-yarn lint:js
+yarn dashboard
 ```
 
-Lints javascript-files inside `/src` directory
+The same thing as `yarn start`, except runs webpack through webpack-dashboard.
 
 ```sh
 yarn build
@@ -55,4 +48,8 @@ yarn build
 Runs the webpack module-bundler with production-settings (compress etc.) and builds the project to `/build` directory.
 
 ## Demo
-Navigate to [https://vue-starter.ville.io/](https://vue-starter.ville.io/) and see the awesomeness IRL :bowtie:
+Navigate to [https://advanced-vue-starter.ville.io/](https://advanced-vue-starter.ville.io/) and see the awesomeness IRL :bowtie:
+
+## Todo:
+- [ ] Make HMR actually work...
+- [ ] Testing

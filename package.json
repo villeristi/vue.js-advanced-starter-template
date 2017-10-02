@@ -1,12 +1,16 @@
 {
   "name": "vue.js-advanced-starter-template",
-  "version": "0.10.0",
-  "description": "A starter for Vue.js-projects",
+  "version": "0.1.0",
+  "description": "An advanced starter for Vue.js-projects",
   "keywords": [
     "vue.js",
-    "vue.js router",
+    "vuex",
+    "vuex router",
+    "typescript",
+    "jsx",
     "axios",
-    "webpack 2",
+    "babel",
+    "webpack",
     "animate.css"
   ],
   "author": "Wille Ristimäki <villeristimaki@gmail.com>",
@@ -20,9 +24,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack/development.js --progress --hot --color",
-    "dashboard": "webpack-dashboard -c magenta -t 'Vue.js-Advanced-Starter-Template' -- webpack-dev-server --config webpack/development.js --progress --hot",
-    "build": "webpack --config webpack/production.js -p --progress",
-    "lint:js": "eslint src"
+    "dashboard": "webpack-dashboard -c magenta -t 'Vue.js-Advanced-Starter-Template' -- webpack-dev-server --config webpack/development.js --progress --hot --color",
+    "build": "webpack --config webpack/production.js -p --progress"
   },
   "devDependencies": {
     "@types/node": "^8.0.31",
