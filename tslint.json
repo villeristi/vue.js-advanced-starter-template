@@ -1,0 +1,25 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  // https://palantir.github.io/tslint/rules/
+  "rules": {
+    "arrow-parens": true,
+    "indent": true,
+    "interface-name": false,
+    "member-access": false,
+    "no-console": false,
+    "no-shadowed-variable": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape",
+      "avoid-template",
+      "jsx-double"
+    ]
+  }
+}
