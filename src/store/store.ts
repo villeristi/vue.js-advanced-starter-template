@@ -3,13 +3,19 @@ import Vuex from 'vuex';
 import mutations from './mutations';
 import actions from './actions';
 import getters from './getters';
-import posts from '../components/Posts/store';
+import { posts } from '../components/Posts/store';
+import { PostsState } from '../components/Posts/types';
 
 import { isProduction } from '../util/helpers';
 
 Vue.use(Vuex);
 
-const state = {
+export interface RootState {
+  posts: PostsState;
+  isFetching: boolean;
+}
+
+const state: object = {
   isFetching: false,
 };
 
