@@ -2,17 +2,17 @@ const path = require('path');
 const argv = require('minimist')(process.argv.slice(2));
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const pkg = require('../package.json');
 const isProduction = !!((argv.env && argv.env.production) || argv.p);
 
 module.exports = {
   entry: {
     app: [path.resolve(__dirname, '../src/main.ts')],
   },
+  mode: isProduction ? 'production' : 'development',
   output: {
     chunkFilename: '[id].chunk.js',
     filename: 'js/[name].[hash].js',
-    path: path.resolve(__dirname, '../build'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
     sourceMapFilename: '[name].[hash].js.map',
   },
@@ -41,7 +41,7 @@ module.exports = {
       colors: true,
       chunks: false,
     },
-    port: pkg.config.port,
+    port: process.env.PORT || 3000,
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000,

@@ -4,6 +4,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -29,7 +30,7 @@ const commonPlugins = [
   new webpack.LoaderOptionsPlugin({
     minimize: isProduction,
     debug: !isProduction,
-    stats: {colors: true},
+    stats: { colors: true },
     eslint: {
       configFile: path.resolve(__dirname, '../.eslintrc'),
       failOnWarning: false,
@@ -102,11 +103,11 @@ const productionPLugins = [
   }),
   new WebpackCleanupPlugin(),
   new webpack.optimize.OccurrenceOrderPlugin(),
-  new webpack.optimize.UglifyJsPlugin({
-    compressor: {
+  new UglifyJsPlugin({
+    uglifyOptions: {
       drop_console: true,
       warnings: false
-    }
+    },
   }),
   new OptimizeCssAssetsPlugin({
     cssProcessorOptions: {
@@ -124,7 +125,7 @@ const productionPLugins = [
       android: true,              // Create Android homescreen icon. `boolean`
       appleIcon: true,            // Create Apple touch icons. `boolean` or `{ offset: offsetInPercentage }`
       appleStartup: false,        // Create Apple startup images. `boolean`
-      coast: {offset: 25},      // Create Opera Coast icon with offset 25%. `boolean` or `{ offset: offsetInPercentage }`
+      coast: { offset: 25 },      // Create Opera Coast icon with offset 25%. `boolean` or `{ offset: offsetInPercentage }`
       favicons: true,             // Create regular favicons. `boolean`
       firefox: true,              // Create Firefox OS icons. `boolean` or `{ offset: offsetInPercentage }`
       windows: true,              // Create Windows 8 tile icons. `boolean`
