@@ -20,7 +20,7 @@ export default class EditPost extends Vue {
     return Object.keys(this.fields).some((key) => this.fields[key].dirty);
   }
 
-  created() {
+  mounted() {
     this.fetchPost();
   }
 
@@ -82,12 +82,13 @@ export default class EditPost extends Vue {
 
           <header>
             <h1 class="card-title">{post.title}</h1>
-            <hr />
+            <hr/>
           </header>
 
-          <form name="editPostForm" class="card card-block mb-4" onSubmit={handleSubmit}>
+          <form name="editPostForm" class="card mb-4" onSubmit={handleSubmit}>
+            <div class="card-body">
 
-            {message &&
+              {message &&
               <transition
                 name="post-message-animation"
                 enter-active-class="animated flipInX"
@@ -103,67 +104,65 @@ export default class EditPost extends Vue {
                   </div>
                 </div>
               </transition>
-            }
+              }
 
-            {errors.any() && errors.items.map((error) => {
-              return (
-                <transition
-                  name="error-animation"
-                  enter-active-class="animated flipInX"
-                  leave-active-class="animated flipOutX">
-                  <div class="alert alert-danger" role="alert">
-                    <strong>Doh!</strong> {error.msg}
-                  </div>
-                </transition>
-              );
-            })}
+              {errors.any() && errors.items.map((error) => {
+                return (
+                  <transition
+                    name="error-animation"
+                    enter-active-class="animated flipInX"
+                    leave-active-class="animated flipOutX">
+                    <div class="alert alert-danger" role="alert">
+                      <strong>Doh!</strong> {error.msg}
+                    </div>
+                  </transition>
+                );
+              })}
 
-            <div class="form-group row">
-              <label for="title" class="col-2 col-form-label">Title</label>
-              <div class="col-10">
-                <input id="title"
-                  name="title"
-                  type="text"
-                  class="form-control"
-                  data-vv-rules="required"
-                  data-vv-as="Post title"
-                  v-model={post.title}
-                  v-validate={true} />
+              <div class="form-group row">
+                <label for="title" class="col-2 col-form-label">Title</label>
+                <div class="col-10">
+                  <input id="title"
+                         name="title"
+                         type="text"
+                         class="form-control"
+                         data-vv-as="Post title"
+                         v-model={post.title}
+                         v-validate="required"/>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group row">
-              <label for="body" class="col-2 col-form-label">Body</label>
-              <div class="col-10">
+              <div class="form-group row">
+                <label for="body" class="col-2 col-form-label">Body</label>
+                <div class="col-10">
                 <textarea id="body"
-                  name="body"
-                  rows="5"
-                  class="form-control"
-                  data-vv-rules="required"
-                  data-vv-as="Post body"
-                  v-model={post.body}
-                  v-validate={true}></textarea>
+                          name="body"
+                          rows="5"
+                          class="form-control"
+                          data-vv-as="Post body"
+                          v-model={post.body}
+                          v-validate="required"/>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-2"/>
+                <div class="col-10">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    disabled={errors.any() || !this.isDirty}
+                  >
+                    <i class="fa fa-floppy-o"/> Save
+                  </button>
+                </div>
               </div>
             </div>
-
-            <div class="form-group row">
-              <div class="col-2"></div>
-              <div class="col-10">
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  disabled={errors.any() || !this.isDirty}
-                >
-                  <i class="fa fa-floppy-o"></i> Save
-                </button>
-              </div>
-            </div>
-
           </form>
 
           <router-link to="/posts">
-            <i class="fa fa-chevron-left"></i> Back to posts
-        </router-link>
+            <i class="fa fa-chevron-left"/> Back to posts
+          </router-link>
         </div>
       </transition>
     );
