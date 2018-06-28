@@ -1,19 +1,24 @@
 declare module '*.html' {
-  export default '';
+  const value: string;
+  export default value
 }
 
 declare module '*.jpg' {
-  export default '';
+  const value: string;
+  export default value
 }
 
 declare module '*.jpeg' {
-  export default '';
+  const value: string;
+  export default value
 }
 
 declare module '*.png' {
-  export default '';
+  const value: string;
+  export default value
 }
 
 declare module '*.gif' {
-  export default '';
+  const value: string;
+  export default value
 }

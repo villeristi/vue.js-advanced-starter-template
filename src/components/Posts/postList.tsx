@@ -1,17 +1,14 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { postsResource } from '../../util/resources';
-import { Action, Getter, namespace } from 'vuex-class';
-import { Post } from './types';
+import { namespace } from 'vuex-class';
 
-const PostsGetter = namespace('posts', Getter);
-const PostsAction = namespace('posts', Action);
+const PostsModule = namespace('posts');
 
 @Component
-export default class Posts extends Vue {
+export default class PostList extends Vue {
 
-  @PostsGetter('all') posts;
-  @PostsAction('fetchAllPosts') fetchPosts;
+  @PostsModule.Getter('all') posts;
+  @PostsModule.Action('fetchAllPosts') fetchPosts;
 
   animation: string = 'flipInX';
   animationDelay: number = 25; // in ms
@@ -21,7 +18,8 @@ export default class Posts extends Vue {
    * Computed props
    */
   get filteredPosts() {
-    return this.posts.filter((post) => post.title.toLowerCase().indexOf(this.postsFilter.toLowerCase()) !== -1);
+    return this.posts.filter((post) => post.title &&
+      post.title.toLowerCase().indexOf(this.postsFilter.toLowerCase()) !== -1);
   }
 
   /**
@@ -54,7 +52,7 @@ export default class Posts extends Vue {
       <div>
         <h1 class="mb-4"><i class="fa fa-file-text-o"></i> Posts</h1>
         <div class="form-group">
-          <input class="form-control" placeholder="Filter posts..." v-model={this.postsFilter} />
+          <input class="form-control" placeholder="Filter posts..." v-model={this.postsFilter}/>
         </div>
         <transition-group
           tag="div"
@@ -64,9 +62,9 @@ export default class Posts extends Vue {
 
           {this.filteredPosts.map((post, index) => (
             <router-link key={post.id}
-              class="list-group-item"
-              data-index={index}
-              to={`post/${post.id}`}>
+                         class="list-group-item"
+                         data-index={index}
+                         to={`post/${post.id}`}>
               {index + 1} {post.title}
             </router-link>
           ))}

@@ -1,24 +1,20 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { postsResource } from '../../util/resources';
-import { Action, Getter, Mutation, namespace } from 'vuex-class';
-import { Post } from './types';
+import { namespace } from 'vuex-class';
 
-const PostsGetter = namespace('posts', Getter);
-const PostsAction = namespace('posts', Action);
-const PostsMutation = namespace('posts', Mutation);
+const PostsModule = namespace('posts');
 
 @Component
 export default class Posts extends Vue {
 
-  @PostsGetter('current') post;
-  @PostsAction('fetchSinglePost') fetchPost;
-  @PostsMutation('setPost') setPost;
+  @PostsModule.Getter('current') post;
+  @PostsModule.Action('fetchSinglePost') fetchPost;
+  @PostsModule.Mutation('setPost') setPost;
 
   /**
    * Lifecycle hooks
    */
-  created() {
+  mounted() {
     const { id } = this.$route.params;
     if (!this.post || (this.post.id !== id)) {
       this.fetchPost(id);
@@ -46,8 +42,10 @@ export default class Posts extends Vue {
         enter-active-class="animated flipInX">
         <div>
           <div class="card card-block mb-4">
-            <h1 class="card-title">{this.post.title}</h1>
-            <p class="card-text">{this.post.body}</p>
+            <div class="card-body">
+              <h1 class="card-title">{this.post.title}</h1>
+              <p class="card-text">{this.post.body}</p>
+            </div>
           </div>
           <router-link to="/posts">
             <i class="fa fa-chevron-left"></i> Back to posts

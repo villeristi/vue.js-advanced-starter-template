@@ -14,7 +14,7 @@ Built with:
 * [Animate.css](https://github.com/daneden/animate.css)
 * [Babel](https://babeljs.io/)
 * [Bootstrap 4](https://v4-alpha.getbootstrap.com/)
-* [tsint](https://palantir.github.io/tslint/)
+* [tslint](https://palantir.github.io/tslint/)
 * [Font Awesome](http://fontawesome.io/)
 * [JSONPlaceholder](http://jsonplaceholder.typicode.com/)
 * [SASS](http://sass-lang.com/)

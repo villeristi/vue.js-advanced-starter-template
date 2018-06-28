@@ -1,5 +1,5 @@
 import Home from './components/Home/home';
-import Posts from './components/Posts/posts';
+import PostList from './components/Posts/postList';
 import Post from './components/Posts/post';
 import CreatePost from './components/Posts/createPost';
 import EditPost from './components/Posts/editPost';
@@ -12,7 +12,7 @@ export default [
   },
   {
     path: '/posts',
-    component: Posts,
+    component: PostList,
   },
   {
     path: '/posts/create',

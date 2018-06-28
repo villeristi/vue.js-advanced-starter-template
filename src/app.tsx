@@ -2,9 +2,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import Loader from './components/Loader/loader';
 import Navigation from './components/Navigation/navigation';
-import { Getter, namespace } from 'vuex-class';
-
-const PostsGetter = namespace('posts', Getter);
+import { Getter } from 'vuex-class';
 
 @Component
 export default class App extends Vue {
